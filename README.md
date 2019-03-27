@@ -31,7 +31,7 @@ ssh -i "mykey-ec2.pem" ec2-user@XXXXXX.us-west-2.compute.amazonaws.com
 ```
 
 ### STEP 4. Run (or copy, modify and run) build_r.sh script
-Now run the `build_r_ruimtehol.sh`  script.
+Now run the `build_r.sh`  script.
 You must pass the R version as a parameter to the script, e.g., `3.5.1`.
 The script produces a zip containing a functional R installation in `/opt/R/`, e.g., `/opt/R/R-3.5.1.zip`.
 Use this R distribution in the following.
