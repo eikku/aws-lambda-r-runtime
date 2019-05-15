@@ -79,9 +79,27 @@ make_prediction <- function(x) {
   new_df <- data.frame(speed = x)
   prediction<- predict(linearMod, new_df)
   return(prediction)
-
 }
+```
+Or if you wish to load your model from S3. Here pre-trained ruimtehol model.
+```R
+library(aws.s3)
+library(ruimtehol)
 
+# get model file and save file locally
+readRenviron('.Renviron')
+
+modelfile <- save_object("s3://YOU_FOLFDER/textspace.ruimtehol",
+                key = Sys.getenv("AWS_ACCESS_KEY_ID"),
+                secret = Sys.getenv("AWS_SECRET_ACCESS_KEY"),
+                region = Sys.getenv("AWS_DEFAULT_REGION"),
+                file = '~/textspace.ruimtehol'
+                )
+model <- starspace_load_model(modelfile)
+
+make_prediction <- function(x) {
+    prediction <- predict(model, x, k = 3)
+    return(prediction)}
 ```
 
 ### STEP 2. Create Lambda
